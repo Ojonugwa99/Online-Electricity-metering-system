@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paygreens Supermarket – Fresh. Fast. Yours.</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Playfair Display (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION BAR
+═══════════════════════════════════════════ -->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+
+    <!-- Logo -->
+    <a href="#home" class="nav-logo" onclick="showSection('home')">
+      <span class="logo-icon">🌿</span>
+      <span class="logo-text">Pay<span class="logo-accent">greens</span></span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="nav-links" id="navLinks">
+      <a href="#" class="nav-link active" onclick="showSection('home'); setActive(this)">Home</a>
+      <a href="#" class="nav-link" onclick="showSection('products'); setActive(this)">Shop</a>
+      <a href="#" class="nav-link" onclick="showSection('about'); setActive(this)">About</a>
+      <a href="#" class="nav-link" onclick="showSection('contact'); setActive(this)">Contact</a>
+    </nav>
+
+    <!-- Nav Actions -->
+    <div class="nav-actions">
+      <!-- Dark mode toggle -->
+      <button class="icon-btn" id="themeToggle" title="Toggle dark mode" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="themeIcon"></i>
+      </button>
+
+      <!-- Search toggle -->
+      <button class="icon-btn" title="Search" onclick="toggleSearch()">
+        <i class="fas fa-search"></i>
+      </button>
+
+      <!-- Cart button -->
+      <button class="cart-btn" onclick="showSection('cart'); setActive(document.querySelectorAll('.nav-link')[1])">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Search overlay -->
+  <div class="search-overlay" id="searchOverlay">
+    <input type="text" id="globalSearch" placeholder="Search products, categories…" oninput="handleGlobalSearch(this.value)" />
+    <button onclick="toggleSearch()"><i class="fas fa-times"></i></button>
+  </div>
+</header>
+
+<!-- Mobile menu drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="showSection('home'); closeMobileMenu()">Home</a>
+  <a href="#" onclick="showSection('products'); closeMobileMenu()">Shop</a>
+  <a href="#" onclick="showSection('about'); closeMobileMenu()">About</a>
+  <a href="#" onclick="showSection('contact'); closeMobileMenu()">Contact</a>
+  <a href="#" onclick="showSection('cart'); closeMobileMenu()">
+    Cart <span class="mobile-cart-count" id="mobileCartCount">0</span>
+  </a>
+</div>
+<div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION: HOME
+═══════════════════════════════════════════ -->
+<main>
+<section class="page-section active" id="section-home">
+
+  <!-- ── HERO ── -->
+  <div class="hero" id="home">
+    <div class="hero-content">
+      <span class="hero-tag">🌱 Fresh Arrivals Daily</span>
+      <h1 class="hero-title">Shop <em>Smarter</em>,<br/>Eat <em>Better.</em></h1>
+      <p class="hero-sub">Premium groceries, farm-fresh produce & everyday essentials — delivered to your door with a smile.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="showSection('products')">
+          <i class="fas fa-store"></i> Shop Now
+        </button>
+        <button class="btn btn-outline" onclick="scrollToCategories()">
+          Browse Categories <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>500+</strong><span>Products</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>24hr</strong><span>Delivery</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>100%</strong><span>Fresh</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-blob"></div>
+      <div class="hero-img-wrap">
+        <div class="fruit-float f1">🍎</div>
+        <div class="fruit-float f2">🥦</div>
+        <div class="fruit-float f3">🍋</div>
+        <div class="fruit-float f4">🥕</div>
+        <div class="fruit-float f5">🍇</div>
+        <div class="basket-emoji">🛒</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROMO BANNER STRIP ── -->
+  <div class="promo-strip">
+    <div class="promo-marquee">
+      <span>🎉 FREE delivery on orders over ₦10,000 &nbsp;•&nbsp;</span>
+      <span>🌿 Farm-fresh produce every morning &nbsp;•&nbsp;</span>
+      <span>💳 Pay on delivery available &nbsp;•&nbsp;</span>
+      <span>🔁 Easy returns within 24 hours &nbsp;•&nbsp;</span>
+      <span>📦 Same-day dispatch before 2pm &nbsp;•&nbsp;</span>
+      <span>🎉 FREE delivery on orders over ₦10,000 &nbsp;•&nbsp;</span>
+      <span>🌿 Farm-fresh produce every morning &nbsp;•&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- ── CATEGORIES ── -->
+  <section class="section" id="categories-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Shop by Category</h2>
+        <p>Everything you need, all in one place</p>
+      </div>
+      <div class="categories-grid">
+        <div class="cat-card" onclick="filterByCategory('Fruits'); showSection('products')">
+          <div class="cat-icon">🍓</div>
+          <h3>Fruits</h3>
+          <span>48 items</span>
+        </div>
+        <div class="cat-card" onclick="filterByCategory('Vegetables'); showSection('products')">
+          <div class="cat-icon">🥬</div>
+          <h3>Vegetables</h3>
+          <span>62 items</span>
+        </div>
+        <div class="cat-card" onclick="filterByCategory('Beverages'); showSection('products')">
+          <div class="cat-icon">🧃</div>
+          <h3>Beverages</h3>
+          <span>34 items</span>
+        </div>
+        <div class="cat-card" onclick="filterByCategory('Snacks'); showSection('products')">
+          <div class="cat-icon">🍿</div>
+          <h3>Snacks</h3>
+          <span>29 items</span>
+        </div>
+        <div class="cat-card" onclick="filterByCategory('Household'); showSection('products')">
+          <div class="cat-icon">🏠</div>
+          <h3>Household</h3>
+          <span>55 items</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURED PRODUCTS ── -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Products</h2>
+        <p>Hand-picked favourites for you</p>
+      </div>
+      <div class="products-grid" id="featuredGrid"></div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <button class="btn btn-primary" onclick="showSection('products')">
+          View All Products <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY US ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Paygreens?</h2>
+        <p>We're not just a supermarket — we're your fresh-food partner</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-leaf"></i></div>
+          <h3>Always Fresh</h3>
+          <p>Every item is sourced daily from verified local farms and trusted suppliers.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-truck"></i></div>
+          <h3>Fast Delivery</h3>
+          <p>Order before 2pm and receive your groceries the same day, right at your door.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Secure & Safe</h3>
+          <p>Your data and payments are protected with industry-standard encryption.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-tags"></i></div>
+          <h3>Best Prices</h3>
+          <p>We price-match daily to ensure you always get the most value for your money.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ── -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to fill your basket?</h2>
+        <p>Join thousands of happy shoppers and experience a better way to grocery shop.</p>
+        <button class="btn btn-white" onclick="showSection('products')">
+          Start Shopping <i class="fas fa-shopping-basket"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</section><!-- /section-home -->
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION: PRODUCTS
+═══════════════════════════════════════════ -->
+<section class="page-section" id="section-products">
+  <div class="page-hero-mini">
+    <div class="container">
+      <h1>Our Products</h1>
+      <p>Browse our full range of fresh groceries & essentials</p>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Toolbar -->
+    <div class="products-toolbar">
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" id="productSearch" placeholder="Search products…" oninput="renderProducts()" />
+      </div>
+      <div class="filter-group">
+        <select id="categoryFilter" onchange="renderProducts()">
+          <option value="All">All Categories</option>
+          <option value="Fruits">🍓 Fruits</option>
+          <option value="Vegetables">🥬 Vegetables</option>
+          <option value="Beverages">🧃 Beverages</option>
+          <option value="Snacks">🍿 Snacks</option>
+          <option value="Household">🏠 Household</option>
+        </select>
+        <select id="sortFilter" onchange="renderProducts()">
+          <option value="default">Sort: Default</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="name-asc">Name: A → Z</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Active filter tags -->
+    <div class="filter-tags" id="filterTags"></div>
+
+    <!-- Results count -->
+    <p class="results-count" id="resultsCount"></p>
+
+    <!-- Products grid -->
+    <div class="products-grid" id="productsGrid"></div>
+
+    <!-- Empty state -->
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div class="empty-icon">🔍</div>
+      <h3>No products found</h3>
+      <p>Try a different search term or category.</p>
+      <button class="btn btn-primary" onclick="clearFilters()">Clear Filters</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION: CART
+═══════════════════════════════════════════ -->
+<section class="page-section" id="section-cart">
+  <div class="page-hero-mini">
+    <div class="container">
+      <h1>Your Cart</h1>
+      <p>Review your items before checkout</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="cart-layout" id="cartLayout">
+      <!-- Cart items column -->
+      <div class="cart-items-col">
+        <div id="cartItemsContainer"></div>
+      </div>
+      <!-- Cart summary column -->
+      <div class="cart-summary-col" id="cartSummaryCol">
+        <div class="cart-summary-card">
+          <h3>Order Summary</h3>
+          <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">₦0</span></div>
+          <div class="summary-row"><span>Delivery</span><span id="summaryDelivery">₦500</span></div>
+          <div class="summary-row summary-discount" id="discountRow" style="display:none">
+            <span>Discount</span><span id="summaryDiscount">-₦0</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row summary-total"><span>Total</span><span id="summaryTotal">₦0</span></div>
+          <div class="promo-input">
+            <input type="text" id="promoCode" placeholder="Promo code" />
+            <button onclick="applyPromo()">Apply</button>
+          </div>
+          <p class="promo-msg" id="promoMsg"></p>
+          <button class="btn btn-primary btn-full" onclick="checkout()">
+            <i class="fas fa-lock"></i> Checkout Securely
+          </button>
+          <button class="btn btn-outline btn-full" onclick="showSection('products')" style="margin-top:.75rem">
+            ← Continue Shopping
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty cart state -->
+    <div class="empty-state" id="emptyCart" style="display:none">
+      <div class="empty-icon">🛒</div>
+      <h3>Your cart is empty</h3>
+      <p>Looks like you haven't added anything yet.</p>
+      <button class="btn btn-primary" onclick="showSection('products')">Start Shopping</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION: ABOUT
+═══════════════════════════════════════════ -->
+<section class="page-section" id="section-about">
+  <div class="page-hero-mini">
+    <div class="container">
+      <h1>About Us</h1>
+      <p>Our story, our values, our promise to you</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-tag">Est. 2019</span>
+        <h2>We Believe Everyone Deserves Fresh, Affordable Food</h2>
+        <p>Paygreens Supermarket was founded in 2019 with a simple mission: bring the freshest, highest-quality groceries to every household — at prices that make sense. What started as a small neighbourhood store in Abuja has grown into a beloved online destination trusted by over 50,000 families across Nigeria.</p>
+        <p>We partner directly with local farmers, cutting out the middleman so you get produce that's truly farm-to-table fresh, while farmers get fair prices for their hard work. It's a win-win that we're proud to champion every single day.</p>
+        <p>Our team of 200+ passionate people work around the clock to pack, store, and deliver your groceries with the care they deserve. From our temperature-controlled warehouses to our friendly delivery riders, every step is designed with your satisfaction in mind.</p>
+        <div class="about-values">
+          <div class="value-pill"><i class="fas fa-seedling"></i> Sustainability</div>
+          <div class="value-pill"><i class="fas fa-handshake"></i> Fair Trade</div>
+          <div class="value-pill"><i class="fas fa-heart"></i> Community</div>
+          <div class="value-pill"><i class="fas fa-star"></i> Quality First</div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-card-stack">
+          <div class="about-stat-card">
+            <strong>50,000+</strong>
+            <span>Happy Customers</span>
+          </div>
+          <div class="about-stat-card accent">
+            <strong>200+</strong>
+            <span>Team Members</span>
+          </div>
+          <div class="about-stat-card">
+            <strong>500+</strong>
+            <span>Products Listed</span>
+          </div>
+          <div class="about-stat-card accent">
+            <strong>6</strong>
+            <span>Cities Served</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team section -->
+    <div class="section-header" style="margin-top:5rem">
+      <h2>Meet the Team</h2>
+      <p>The people behind your fresh groceries</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--green-light)">👨🏾‍💼</div>
+        <h4>Chukwuemeka Eze</h4>
+        <p>Founder & CEO</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--orange-light)">👩🏽‍💼</div>
+        <h4>Amina Lawal</h4>
+        <p>Head of Operations</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--green-light)">👨🏿‍🍳</div>
+        <h4>Tunde Adeyemi</h4>
+        <p>Quality Assurance Lead</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:var(--orange-light)">👩🏾‍💻</div>
+        <h4>Ngozi Okonkwo</h4>
+        <p>Head of Technology</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION: CONTACT
+═══════════════════════════════════════════ -->
+<section class="page-section" id="section-contact">
+  <div class="page-hero-mini">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>We'd love to hear from you</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <p>Have a question, feedback, or a bulk order inquiry? Reach out and our team will get back to you within 24 hours.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <strong>Address</strong>
+              <p>12 Fresh Market Lane, Wuse II, Abuja, Nigeria</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <strong>Phone</strong>
+              <p>+234 801 234 5678</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <strong>Email</strong>
+              <p>hello@paygreens.com.ng</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <strong>Hours</strong>
+              <p>Mon–Sat: 7am – 9pm &nbsp;|&nbsp; Sun: 9am – 6pm</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-socials">
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-wrap">
+        <form id="contactForm" onsubmit="submitContact(event)" novalidate>
+          <h3>Send a Message</h3>
+
+          <div class="form-group">
+            <label for="contactName">Full Name *</label>
+            <input type="text" id="contactName" placeholder="Your full name" />
+            <span class="field-error" id="nameError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="contactEmail">Email Address *</label>
+            <input type="email" id="contactEmail" placeholder="you@example.com" />
+            <span class="field-error" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="contactPhone">Phone (Optional)</label>
+            <input type="tel" id="contactPhone" placeholder="+234 800 000 0000" />
+          </div>
+
+          <div class="form-group">
+            <label for="contactSubject">Subject *</label>
+            <select id="contactSubject">
+              <option value="">Select a subject…</option>
+              <option>Order Inquiry</option>
+              <option>Delivery Issue</option>
+              <option>Product Feedback</option>
+              <option>Bulk Order</option>
+              <option>Other</option>
+            </select>
+            <span class="field-error" id="subjectError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage">Message *</label>
+            <textarea id="contactMessage" rows="5" placeholder="Write your message here…"></textarea>
+            <span class="field-error" id="messageError"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+
+          <div class="form-success" id="formSuccess" style="display:none">
+            <i class="fas fa-check-circle"></i>
+            <strong>Message sent!</strong> We'll get back to you within 24 hours.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main><!-- /main -->
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand column -->
+      <div class="footer-col footer-brand">
+        <div class="footer-logo">🌿 Pay<span>greens</span></div>
+        <p>Your modern online supermarket — bringing the freshest groceries to your doorstep since 2019.</p>
+        <div class="footer-socials">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#" onclick="showSection('home')">Home</a></li>
+          <li><a href="#" onclick="showSection('products')">Shop</a></li>
+          <li><a href="#" onclick="showSection('about')">About Us</a></li>
+          <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+          <li><a href="#" onclick="showSection('cart')">My Cart</a></li>
+        </ul>
+      </div>
+
+      <!-- Categories -->
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#" onclick="filterByCategory('Fruits'); showSection('products')">🍓 Fruits</a></li>
+          <li><a href="#" onclick="filterByCategory('Vegetables'); showSection('products')">🥬 Vegetables</a></li>
+          <li><a href="#" onclick="filterByCategory('Beverages'); showSection('products')">🧃 Beverages</a></li>
+          <li><a href="#" onclick="filterByCategory('Snacks'); showSection('products')">🍿 Snacks</a></li>
+          <li><a href="#" onclick="filterByCategory('Household'); showSection('products')">🏠 Household</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="footer-col footer-newsletter">
+        <h4>Stay in the Loop</h4>
+        <p>Get weekly deals and fresh offers straight to your inbox.</p>
+        <div class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" />
+          <button onclick="subscribeNewsletter()"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <p class="newsletter-msg" id="newsletterMsg"></p>
+        <div class="payment-icons">
+          <span title="Visa"><i class="fab fa-cc-visa"></i></span>
+          <span title="Mastercard"><i class="fab fa-cc-mastercard"></i></span>
+          <span title="PayPal"><i class="fab fa-cc-paypal"></i></span>
+          <span title="Apple Pay"><i class="fab fa-cc-apple-pay"></i></span>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Paygreens Supermarket. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════
+     PRODUCT MODAL
+═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+<div class="product-modal" id="productModal">
+  <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+  <div class="modal-body">
+    <div class="modal-image-wrap">
+      <span class="modal-emoji" id="modalEmoji"></span>
+    </div>
+    <div class="modal-info">
+      <span class="modal-category" id="modalCategory"></span>
+      <h2 id="modalName"></h2>
+      <div class="modal-rating">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+        <span id="modalRating"></span>
+      </div>
+      <p class="modal-price" id="modalPrice"></p>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-qty">
+        <button onclick="modalDecQty()">−</button>
+        <span id="modalQty">1</span>
+        <button onclick="modalIncQty()">+</button>
+      </div>
+      <button class="btn btn-primary btn-full" id="modalAddBtn" onclick="modalAddToCart()">
+        <i class="fas fa-cart-plus"></i> Add to Cart
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     TOAST NOTIFICATION
+═══════════════════════════════════════════ -->
+<div class="toast" id="toast"></div>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
